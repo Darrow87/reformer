@@ -11,7 +11,7 @@
 <% end %>
 
 
-<%= form_with(model: User.new, url: users_path, method: :post, local: true) do |form| %>
+<%= form_with(model: @user, local: true) do |form| %>
   <%= form.label :name, 'Name:' %>
   <%= form.text_field :name %>
 
@@ -19,7 +19,11 @@
   <%= form.email_field :email %>
 
   <%= form.label :password, 'Password:' %>
-  <%= form.password_field :password %>
+  <%= form.password_field :password, autocomplete: "new-password" %>
+  <div><em>Leave blank if you don't want to change the password.</em></div>
 
-  <%= form.submit "Create User" %>
+  <%= form.label :password_confirmation, 'Confirmation:' %>
+  <%= form.password_field :password_confirmation, autocomplete: "new-password" %>
+
+  <%= form.submit "Save changes" %>
 <% end %>
