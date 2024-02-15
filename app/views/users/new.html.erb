@@ -12,8 +12,8 @@
 
 
 <%= form_with(model: User.new, url: users_path, method: :post, local: true) do |form| %>
-  <%= form.label :name, 'Name:' %>
-  <%= form.text_field :name %>
+  <%= form.label :username, 'Name:' %>
+  <%= form.text_field :username %>
 
   <%= form.label :email, 'Email:' %>
   <%= form.email_field :email %>

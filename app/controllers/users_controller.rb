@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    before_action :set_user, only: [:update]
 
     # GET /users/new
     # This action is typically used to display a form for creating a new user.
@@ -25,6 +26,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/:id
    def update
+    binding.pry
      if @user.update(user_params)
        flash[:success] = "Profile updated"
        redirect_to @user
@@ -37,5 +39,12 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :email, :password)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "User not found."
+    redirect_to users_path
   end
 end
