@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       # GET /users/:id/edit
           # GET /users/:id/edit
    def edit
-    # @user is set by set_user
+    @user = User.find(params[:id])
    end
 
   # PATCH/PUT /users/:id
